@@ -58,13 +58,13 @@ export default class StepIndicator extends PureComponent {
   }
 
   render() {
-    const { labels, direction } = this.props;
+    const { labels, direction, shouldRenderLables } = this.props;
     return (
       <View style={[styles.container, direction === 'vertical' ? {flexDirection: 'row', flex:1} : {flexDirection: 'column'}]}>
         {this.state.width !== 0 && this.renderProgressBarBackground()}
         {this.state.width !== 0 && this.renderProgressBar()}
         {this.renderStepIndicator()}
-        {labels && this.renderStepLabels()}
+        {labels && shouldRenderLables && this.renderStepLabels()}
       </View>
     );
   }
@@ -333,6 +333,7 @@ export default class StepIndicator extends PureComponent {
     labels: PropTypes.array,
     onPress: PropTypes.func,
     renderStepIndicator: PropTypes.func,
+    shouldRenderLables: PropTypes.bool
   };
 
   StepIndicator.defaultProps = {
